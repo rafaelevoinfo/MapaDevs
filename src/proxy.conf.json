@@ -1,0 +1,6 @@
+{
+    "http://localhost:4200/devs": {
+        "target": "https://arcane-depths-49398.herokuapp.com",        
+        "secure": false        
+    }
+}
