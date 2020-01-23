@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
 
   devSubscription:Subscription;
 
-  constructor(private api: DevMapApiService) {
+  constructor(public api: DevMapApiService) {
 
   }
 

@@ -6,7 +6,8 @@ class Dev {
         public latitude: string,
         public longitude: string,
         public name:string,
-        public avatar_url:string) {
+        public avatar_url:string,
+        public bio:string) {
     }
 
     // get arrayTechs():string[]{

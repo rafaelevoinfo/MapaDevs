@@ -34,9 +34,9 @@ export class DevMapApiService {
   }
 
   private criarDev(ipData) {
-    const { github_username, techs, name, avatar_url, location: { coordinates: [longitude, latitude] } } = ipData;
+    const { github_username, techs, name, avatar_url, bio, location: { coordinates: [longitude, latitude] } } = ipData;
     let vaTechs = techs ? techs.toString() : '';
-    return new Dev(github_username, vaTechs, latitude, longitude, name, avatar_url);
+    return new Dev(github_username, vaTechs, latitude, longitude, name, avatar_url, bio);
   }
 
   getDevs(): Observable<Dev[]> {
