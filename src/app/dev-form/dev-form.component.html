@@ -38,5 +38,5 @@
     </div>
   </div>
 
-  <button class="salvar" type="button" [disabled]="!devForm.valid" (click)="salvar(devForm.value)">Salvar</button>
+  <button class="salvar" type="button" [disabled]="(!devForm.valid) || (acao !== 'Salvar')" (click)="salvar(devForm.value)">{{acao}}</button>
 </form>

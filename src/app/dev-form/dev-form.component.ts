@@ -15,6 +15,7 @@ export class DevFormComponent implements OnInit {
   devForm: FormGroup;
   edtLatitude: FormControl;
   edtLongitude: FormControl;
+  acao:string='Salvar';
 
   constructor(private formBuilder: FormBuilder,
     private devApi: DevMapApiService,
@@ -47,7 +48,17 @@ export class DevFormComponent implements OnInit {
   }
 
   salvar(dev: Dev) {  
+    for (const name in this.devForm.controls) {
+      if (this.devForm.controls.hasOwnProperty(name)) {
+        const vaControl = this.devForm.controls[name];
+        if ((vaControl != this.edtLatitude) && (vaControl != this.edtLongitude)){
+          vaControl.reset();
+        }
+      }
+    }  
+    this.acao = 'Salvando...'; 
     this.devApi.salvar(dev).subscribe(vaDev => {      
+      this.acao = 'Salvar';
       let vaIndex = this.devApi.devs.findIndex(ipDev => {
         return ipDev.github_username === vaDev.github_username
       });
@@ -68,7 +79,8 @@ export class DevFormComponent implements OnInit {
       }
     },
       error => {        
-        console.log(error);
+        console.log(`Erro ao salvar ${error}`);
+        this.acao = 'Salvar';
         this.toastService.error(error,'Não foi possível cadastrar o Dev',{
           closeButton:true,
           timeOut: 3000
